@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace ShootingDemo
+{
+    public class #NAME# : MonoBehaviour
+    {
+        
+    }
+}

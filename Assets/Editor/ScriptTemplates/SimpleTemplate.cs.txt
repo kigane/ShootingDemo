@@ -1,0 +1,9 @@
+using QFramework;
+
+namespace ShootingDemo
+{
+    public class #NAME#
+    {
+        
+    }
+}

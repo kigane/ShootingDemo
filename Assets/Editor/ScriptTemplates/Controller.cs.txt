@@ -1,0 +1,13 @@
+using UnityEngine;
+using QFramework;
+
+namespace ShootingDemo
+{
+    public class #NAME# : MonoBehaviour, IController
+    {
+        public IArchitecture GetArchitecture()
+        {
+            return Shooting2D.Interface;
+        }
+    }
+}

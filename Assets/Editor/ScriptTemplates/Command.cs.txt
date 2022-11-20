@@ -1,0 +1,12 @@
+using QFramework;
+
+namespace ShootingDemo
+{
+    public class #NAME# : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            //TODO
+        }
+    }
+}
