@@ -17,7 +17,7 @@ namespace ShootingDemo
 
         public void Shoot()
         {
-            if (mGunInfo.BulletCount.Value > 0)
+            if (mGunInfo.BulletCountInGun.Value > 0 && mGunInfo.State == GunState.IDLE)
             {
                 var bullet = Instantiate(mBullet, mBullet.transform.position, mBullet.transform.rotation);
                 // 原来Bullet是Gun的子对象，Instantiate出来的会在根节点，因此缩放需要调整。

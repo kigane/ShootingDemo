@@ -6,9 +6,11 @@ namespace ShootingDemo
     {
         protected override void Init()
         {
-            this.RegisterSystem<IStatSystem>(new StatSystem());
-            this.RegisterSystem<IGunSystem>(new GunSystem());
-            this.RegisterModel<IPlayerModel>(new PlayerModel());
+            RegisterSystem<IStatSystem>(new StatSystem());
+            RegisterSystem<IGunSystem>(new GunSystem());
+            RegisterSystem<ITimeSystem>(new TimeSystem());
+            RegisterModel<IGunConfigModel>(new GunConfigModel());
+            RegisterModel<IPlayerModel>(new PlayerModel());
         }
     }
 }
