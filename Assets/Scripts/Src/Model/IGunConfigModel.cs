@@ -44,11 +44,11 @@ namespace ShootingDemo
     public class GunConfigModel : AbstractModel, IGunConfigModel
     {
         private Dictionary<string, GunConfigItem> mItems = new(){
-            {"Pistol", new GunConfigItem("Pistol", 7, 1, 1, 0.5f, false, 3, "初始武器")},
-            {"c", new GunConfigItem("Pistol", 30, 1, 1, 1f, true, 3, "冲锋枪")},
-            {"b", new GunConfigItem("Pistol", 40, 1, 1, 2f, true, 3, "步枪")},
-            {"j", new GunConfigItem("Pistol", 1, 1, 1, 5f, true, 3, "狙击枪")},
-            {"h", new GunConfigItem("Pistol", 1, 1, 1, 3f, true, 3, "火箭筒")},
+            {"Pistol", new GunConfigItem("Pistol", 7, 1, 2, 3, false, 1, "初始武器")},
+            {"TommyGun", new GunConfigItem("TommyGun", 30, 1, 5, 1f, true, 2, "冲锋枪")},
+            {"Rifle", new GunConfigItem("Rifle", 40, 1, 2, 8, true, 2, "步枪")},
+            {"SniperRifle", new GunConfigItem("SniperRifle", 5, 1, 1, 12f, true, 3, "狙击枪")},
+            {"Bazooka", new GunConfigItem("Bazooka", 1, 8, 1, 7, true, 3, "火箭筒")},
         };
 
         public GunConfigItem GetGunConfigByName(string name)

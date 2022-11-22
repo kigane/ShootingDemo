@@ -740,7 +740,7 @@ namespace QFramework
         }
 
         private Action<T> mOnValueChanged = (v) => { };
-
+ 
         public IUnRegister Register(Action<T> onValueChanged)
         {
             mOnValueChanged += onValueChanged;
