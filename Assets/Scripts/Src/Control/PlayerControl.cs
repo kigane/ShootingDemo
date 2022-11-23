@@ -55,6 +55,15 @@ namespace ShootingDemo
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""efd2c4bf-4eb1-40b8-a339-1ea8dd11fc2f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,17 @@ namespace ShootingDemo
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50638d2b-b7d4-4a94-91a0-9aae8b55d9c4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -145,6 +165,7 @@ namespace ShootingDemo
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -207,6 +228,7 @@ namespace ShootingDemo
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Reload;
         public struct PlayerActions
         {
             private @PlayerControl m_Wrapper;
@@ -214,6 +236,7 @@ namespace ShootingDemo
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Reload => m_Wrapper.m_Player_Reload;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ namespace ShootingDemo
                     @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                     @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                    @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                    @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -245,6 +271,9 @@ namespace ShootingDemo
                     @Fire.started += instance.OnFire;
                     @Fire.performed += instance.OnFire;
                     @Fire.canceled += instance.OnFire;
+                    @Reload.started += instance.OnReload;
+                    @Reload.performed += instance.OnReload;
+                    @Reload.canceled += instance.OnReload;
                 }
             }
         }
@@ -254,6 +283,7 @@ namespace ShootingDemo
             void OnMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
+            void OnReload(InputAction.CallbackContext context);
         }
     }
 }

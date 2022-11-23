@@ -7,12 +7,14 @@ namespace ShootingDemo
     {
         public GameObject mBullet;
         private GunInfo mGunInfo;
+        private int mMaxBulletCount;
 
         private void Start()
         {
             mBullet = transform.Find("Bullet").gameObject;
             // 弹药量只和一把枪关联
             mGunInfo = this.GetSystem<IGunSystem>().CurrentGun;
+            mMaxBulletCount = this.SendQuery(new MaxBulletCountQuery(mGunInfo.Name.Value));
         }
 
         public void Shoot()
@@ -26,6 +28,16 @@ namespace ShootingDemo
 
                 // 不用每次都new一个新对象
                 this.SendCommand(ShootCommand.Single);
+            }
+        }
+
+        public void Reload()
+        {
+            if (mGunInfo.State.Value == GunState.IDLE &&
+                mGunInfo.BulletCountInGun.Value != mMaxBulletCount &&
+                mGunInfo.BulletCountOutGun.Value > 0)
+            {
+                this.SendCommand<ReloadCommand>();
             }
         }
 

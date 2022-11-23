@@ -17,6 +17,13 @@ namespace ShootingDemo
             this.GetSystem<ITimeSystem>().AddDelayTask(1 / gunConfig.Frequency, () =>
             {
                 gunInfo.State.Value = GunState.IDLE;
+
+                // 自动填弹
+                if (gunInfo.BulletCountInGun.Value == 0 &&
+                    gunInfo.BulletCountOutGun.Value > 0)
+                {
+                    this.SendCommand<ReloadCommand>();
+                }
             });
         }
     }

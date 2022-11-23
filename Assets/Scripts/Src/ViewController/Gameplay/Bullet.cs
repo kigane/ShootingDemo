@@ -17,7 +17,7 @@ namespace ShootingDemo
         private void Start()
         {
             int isRight = (int)Mathf.Sign(transform.localScale.x);
-            mRig.velocity = Vector2.right * 10f * isRight;
+            mRig.velocity = 10f * isRight * Vector2.right;
         }
 
         private void OnCollisionEnter2D(Collision2D other)

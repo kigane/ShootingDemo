@@ -12,7 +12,7 @@ namespace ShootingDemo
             var randNum = Random.Range(0, 100);
             if (randNum < 80)
             {
-                this.GetSystem<IGunSystem>().CurrentGun.BulletCountInGun.Value += Random.Range(1, 4);
+                this.GetSystem<IGunSystem>().CurrentGun.BulletCountOutGun.Value += Random.Range(1, 4);
             }
         }
     }

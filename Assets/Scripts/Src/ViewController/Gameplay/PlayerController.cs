@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,7 @@ namespace ShootingDemo
             mPlayerControl.Player.Enable();
             mPlayerControl.Player.Jump.performed += OnJump;
             mPlayerControl.Player.Fire.performed += OnFire;
+            mPlayerControl.Player.Reload.performed += OnReload;
         }
 
         private void FixedUpdate()
@@ -56,6 +58,11 @@ namespace ShootingDemo
         private void OnFire(InputAction.CallbackContext ctx)
         {
             mGun.Shoot();
+        }
+
+        private void OnReload(InputAction.CallbackContext obj)
+        {
+            mGun.Reload();
         }
     }
 }
