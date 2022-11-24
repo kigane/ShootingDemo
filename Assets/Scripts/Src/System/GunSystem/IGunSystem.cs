@@ -8,6 +8,9 @@ namespace ShootingDemo
     {
         GunInfo CurrentGun { get; }
 
+        // 补给箱功能需要给每一把枪添加弹药
+        Queue<GunInfo> GunInfos { get; }
+
         /// <summary>
         /// 1. 捡到当前枪 补充子弹  
         /// 2. 捡到已有枪 补充已有枪的子弹  
@@ -50,6 +53,8 @@ namespace ShootingDemo
             }
         };
 
+        public Queue<GunInfo> GunInfos => mGunInfos;
+
         public void PickUpGun(string name, int bulletInGun, int bulletOutGun)
         {
             if (CurrentGun.Name.Value == name)
@@ -72,6 +77,8 @@ namespace ShootingDemo
 
         public void ShiftGun()
         {
+            if (mGunInfos.Count == 0)
+                return;
             var prevGun = mGunInfos.Dequeue();
             EnqueueCurrentGun(prevGun.Name.Value, prevGun.BulletCountInGun.Value, prevGun.BulletCountOutGun.Value);
             this.SendEvent(new OnCurrentGunChange() { Name = prevGun.Name.Value });
