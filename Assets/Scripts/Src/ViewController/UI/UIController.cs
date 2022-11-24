@@ -4,7 +4,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class UIController : MonoBehaviour, IController
+    public class UIController : Shooting2DController
     {
         private IStatSystem mStatSystem;
         private IGunSystem mGunSystem;
@@ -44,11 +44,6 @@ namespace ShootingDemo
             mStatSystem = null;
             mGunSystem = null;
             mPlayerModel = null;
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class AttackPlayer : MonoBehaviour, IController
+    public class AttackPlayer : Shooting2DController
     {
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -11,11 +11,6 @@ namespace ShootingDemo
             {
                 this.SendCommand<HurtPlayerCommand>();
             }
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

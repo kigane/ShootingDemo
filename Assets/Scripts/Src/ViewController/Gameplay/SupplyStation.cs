@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class SupplyStation : MonoBehaviour, IController
+    public class SupplyStation : Shooting2DController
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -11,11 +11,6 @@ namespace ShootingDemo
             {
                 this.SendCommand<FullBulletCommand>();
             }
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

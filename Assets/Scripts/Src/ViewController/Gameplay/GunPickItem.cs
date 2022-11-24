@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class GunPickItem : MonoBehaviour, IController
+    public class GunPickItem : Shooting2DController
     {
         public string Name;
         public int BulletCountInGun;
@@ -16,11 +16,6 @@ namespace ShootingDemo
                 this.SendCommand(new PickUpGunCommand(Name, BulletCountInGun, BulletCountOutGun));
                 Destroy(gameObject);
             }
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

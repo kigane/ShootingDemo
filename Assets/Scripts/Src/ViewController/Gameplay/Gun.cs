@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class Gun : MonoBehaviour, IController
+    public class Gun : Shooting2DController
     {
         public GameObject mBullet;
         private GunInfo mGunInfo;
@@ -44,11 +44,6 @@ namespace ShootingDemo
         private void OnDestroy()
         {
             mGunInfo = null;
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

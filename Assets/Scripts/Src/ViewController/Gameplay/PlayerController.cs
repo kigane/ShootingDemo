@@ -5,7 +5,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class PlayerController : MonoBehaviour, IController
+    public class PlayerController : Shooting2DController
     {
         public float mSpeed;
         public float mJumpForce;
@@ -70,11 +70,6 @@ namespace ShootingDemo
         private void OnShiftGun(InputAction.CallbackContext obj)
         {
             this.SendCommand<ShiftGunCommand>();
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

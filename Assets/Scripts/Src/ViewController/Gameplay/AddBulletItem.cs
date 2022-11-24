@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class AddBulletItem : MonoBehaviour, IController
+    public class AddBulletItem : Shooting2DController
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -12,11 +12,6 @@ namespace ShootingDemo
                 this.SendCommand<AddBulletCommand>();
                 Destroy(gameObject);
             }
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }

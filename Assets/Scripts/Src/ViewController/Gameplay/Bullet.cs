@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ShootingDemo
 {
-    public class Bullet : MonoBehaviour, IController
+    public class Bullet : Shooting2DController
     {
         private Rigidbody2D mRig;
 
@@ -28,11 +28,6 @@ namespace ShootingDemo
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
-        }
-
-        public IArchitecture GetArchitecture()
-        {
-            return Shooting2D.Interface;
         }
     }
 }
