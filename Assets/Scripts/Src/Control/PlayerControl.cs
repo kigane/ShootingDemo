@@ -64,6 +64,15 @@ namespace ShootingDemo
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShiftGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""56dd5e7d-3a3e-4803-8ce6-3dab54b503bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ namespace ShootingDemo
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a4fafaa-3a48-40a1-b382-a05dc0ed629a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShiftGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ namespace ShootingDemo
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+            m_Player_ShiftGun = m_Player.FindAction("ShiftGun", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -229,6 +250,7 @@ namespace ShootingDemo
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Reload;
+        private readonly InputAction m_Player_ShiftGun;
         public struct PlayerActions
         {
             private @PlayerControl m_Wrapper;
@@ -237,6 +259,7 @@ namespace ShootingDemo
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Reload => m_Wrapper.m_Player_Reload;
+            public InputAction @ShiftGun => m_Wrapper.m_Player_ShiftGun;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -258,6 +281,9 @@ namespace ShootingDemo
                     @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                     @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                     @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                    @ShiftGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftGun;
+                    @ShiftGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftGun;
+                    @ShiftGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShiftGun;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -274,6 +300,9 @@ namespace ShootingDemo
                     @Reload.started += instance.OnReload;
                     @Reload.performed += instance.OnReload;
                     @Reload.canceled += instance.OnReload;
+                    @ShiftGun.started += instance.OnShiftGun;
+                    @ShiftGun.performed += instance.OnShiftGun;
+                    @ShiftGun.canceled += instance.OnShiftGun;
                 }
             }
         }
@@ -284,6 +313,7 @@ namespace ShootingDemo
             void OnJump(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnReload(InputAction.CallbackContext context);
+            void OnShiftGun(InputAction.CallbackContext context);
         }
     }
 }

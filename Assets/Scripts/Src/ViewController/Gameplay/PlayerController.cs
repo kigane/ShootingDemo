@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using QFramework;
 
 namespace ShootingDemo
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IController
     {
         public float mSpeed;
         public float mJumpForce;
@@ -27,6 +28,7 @@ namespace ShootingDemo
             mPlayerControl.Player.Jump.performed += OnJump;
             mPlayerControl.Player.Fire.performed += OnFire;
             mPlayerControl.Player.Reload.performed += OnReload;
+            mPlayerControl.Player.ShiftGun.performed += OnShiftGun;
         }
 
         private void FixedUpdate()
@@ -63,6 +65,16 @@ namespace ShootingDemo
         private void OnReload(InputAction.CallbackContext obj)
         {
             mGun.Reload();
+        }
+
+        private void OnShiftGun(InputAction.CallbackContext obj)
+        {
+            this.SendCommand<ShiftGunCommand>();
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return Shooting2D.Interface;
         }
     }
 }
