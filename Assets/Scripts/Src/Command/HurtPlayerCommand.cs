@@ -7,6 +7,8 @@ namespace ShootingDemo
     {
         private int mHurt;
 
+        public HurtPlayerCommand() { }
+
         public HurtPlayerCommand(int hurt)
         {
             mHurt = hurt;
