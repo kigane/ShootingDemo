@@ -1,15 +1,51 @@
-﻿using System.Xml;
+﻿using System.IO;
+using System.Xml;
 using UnityEngine;
+using System.Linq;
 
 namespace ShootingDemo
 {
     public class LevelPlayer : MonoBehaviour
     {
-        public TextAsset LevelFile;
+        private static string mLevelFolder;
+        public enum Phase
+        {
+            SELECTION,
+            PLAYING
+        }
+
+        private Phase mCurrentPhase = Phase.SELECTION;
 
         private void Start()
         {
-            var xml = LevelFile.text;
+            mLevelFolder = Application.persistentDataPath + "/LevelFiles";
+        }
+
+        private void OnGUI()
+        {
+            if (mCurrentPhase == Phase.SELECTION)
+            {
+                string[] levelFiles = Directory.GetFiles(mLevelFolder);
+
+                int y = 10;
+                foreach (var levelFile in levelFiles.Where(f => f.EndsWith(".xml")))
+                {
+                    var fileName = Path.GetFileName(levelFile);
+
+                    if (GUI.Button(new Rect(10, y, 100, 40), fileName))
+                    {
+                        string xmlText = File.ReadAllText(levelFile);
+                        ParseAndRun(xmlText);
+                        mCurrentPhase = Phase.PLAYING;
+                    }
+
+                    y += 40;
+                }
+            }
+        }
+
+        private void ParseAndRun(string xml)
+        {
             var document = new XmlDocument();
             document.LoadXml(xml);
             var levelNode = document.SelectSingleNode("Level");
